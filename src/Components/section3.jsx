@@ -12,7 +12,7 @@ const Section3 = (props) => {
     // Main
     <div
       ref={props.reference}
-      className={`w-full h-screen border-2 border-violet-700 p-[3%] ${
+      className={`w-full h-screen p-[3%] ${
         data.mode ? "bg-white" : "bg-[#1f2235]"
       } `}
     >

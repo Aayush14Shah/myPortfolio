@@ -44,7 +44,7 @@ const Section5 = () => {
   }, [carX]);
   return (
     <div
-      className={`w-full h-screen border-2 border-red-700 p-[3%] sm:p-[5%] xl:p-[3%] ${
+      className={`w-full h-screen p-[3%] sm:p-[5%] xl:p-[3%] ${
         data.mode ? "bg-white" : "bg-[#1f2235]"
       } `}
     >

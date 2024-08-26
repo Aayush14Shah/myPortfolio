@@ -85,7 +85,7 @@ function App(props) {
         <Section2 reference={about} />
         <Section3 reference={project} />
         <Section4 reference={contact} />
-        <Section5 />
+        {/* <Section5 /> */}
         <LastSectionFooter />
         <GoToTop show={show} scrollToTop={scrollToTop} reference={onTop} />
       </AppContext.Provider>

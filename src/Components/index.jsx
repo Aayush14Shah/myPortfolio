@@ -3,11 +3,11 @@ import Typewriter from "typewriter-effect";
 import { AppContext } from "./AppContext";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 
 const Index = (props) => {
   const data = useContext(AppContext);
- 
+
   useEffect(() => {
     console.log("This is index file", props.reference);
   }, [props.reference]);
@@ -28,7 +28,6 @@ const Index = (props) => {
     });
   });
 
-  
   return (
     <div
       className={`h-screen w-full  `}
@@ -36,15 +35,15 @@ const Index = (props) => {
       data-aos="fade-left"
     >
       <div
-        className={`${
+        className={`  ${
           data.mode ? "bg-white" : "bg-[#1f2235]"
         } p-10 lg:p-5 md:p-5 sm:p-5  w-full h-full   `}
       >
         {/* Section 1*/}
         <div
           ref={container}
-          className={` rounded-md h-[500px] lg:h-[450px] md:h-[430px] max-w-[1200px] min-w-[1000px]  lg:max-w-[1000px] lg:min-w-[700px] md:max-w-[800px] md:min-w-[500px]
-          sm:max-w-[400px] sm:min-w-[300px] sm:h-[400px] px-[4%] py-[4%] lg:p-[3%] md:py-[6%] sm:p-[4%] flex flex-row sm:flex-col  ${
+          className={` bg-[url('/public/images/indexBg.avif')] bg-cover bg-center rounded-md h-[500px] lg:h-[500px] md:h-[500px] max-w-[calc(100%-10%)] min-w-[1000px] lg:min-w-[700px] md:max-w-[800px] md:min-w-[500px]
+          sm:max-w-[calc(100%-6%)] sm:min-w-[300px] sm:h-[500px] p-[2%] flex flex-row  ${
             data.mode ? "bg-indigo-100" : "bg-[#313552]"
           }  ${
             data.mode ? "text-slate-800" : "text-white"
@@ -53,75 +52,59 @@ const Index = (props) => {
           {/* Short description */}
           <div
             ref={box1}
-            className={` text-left  ${
-              data.mode ? "  bg-indigo-200 sm:bg-indigo-200" : "bg-[#1f2235] "
-            } mx-[30px] lg:mx-[5px] md:mx-[10px] sm:mx-[8px] p-10 lg:p-8 md:p-5 sm:p-2 rounded-md w-[600px] lg:w-[400px] md:w-[300px] sm:w-auto leading-8 sm:order-last sm:my-[0px] flex flex-row justify-around lg:justify-between flex-wrap overflow-hidden `}
+            className={` p-3 lg:p-8 md:p-5 sm:p-2 rounded-md leading-8`}
           >
             <div>
-              <h1
-                className={`text-xl sm:text-sm ${
-                  data.mode ? "text-stone-900" : "text-yellow-300"
-                } `}
+              <p
+                className={`trackiing-wide text-xl sm:text-lg text-stone-800 `}
               >
                 Hello, my name is
-              </h1>
+              </p>
               <p
-                className={`text-left text-3xl sm:text-xl font-semibold tracking-8 my-2 ${
-                  data.mode ? "text-violet-800" : "text-amber-300"
-                } `}
+                className={`text-left text-5xl lg:text-4xl md:text-4xl sm:text-4xl font-semibold tracking-8 my-2 text-indigo-800 `}
               >
-                Aayush Shah,
+                Aayush Shah.
+                <p className={` mt-4`}>I build things for the web</p>
               </p>
               <span
-                className={`text-lg sm:text-sm ${
-                  data.mode ? "text-stone-900" : "text-yellow-300"
-                } `}
+                className={`text-xl sm:text-lg text-stone-800 `}
               >
-                I'am a 
+                I'am a
                 <h1
-                  className={`text-3xl sm:text-2xl font-bold ${
-                    data.mode ? "text-violet-800" : "text-yellow-300"
-                  }`}
+                  className={`text-5xl lg:text-4xl md:text-4xl sm:text-4xl font-bold text-indigo-800`}
                 >
                   <Typewriter
                     options={{
-                      strings: ["Developer", "Designer", "Artist"],
+                      strings: ["Frontend Developer"],
                       autoStart: true,
                       loop: true,
                     }}
                   />
                 </h1>
               </span>
-            
-                <button
-                  id="talk"
-                  type="button"
-                  onClick={() => data.scrollHandler(data.contact)}
-                  className={` text-lg transition transform ease-linear duration-150 hover:scale-110 px-[30px] sm:px-[10px] my-10 sm:my-3 py-2 rounded-lg font-semibold ${
-                    data.mode
-                      ? "border-2 border-indigo-800 hover:text-white hover:bg-violet-800 "
-                      : "border-2 border-[#313552] hover:text-amber-300 hover:bg-[#313552] "
-                  } `}
-                >
-                  Let's talk <ArrowOutwardIcon  />
-                </button>
-             
+
+              <button
+                id="talk"
+                type="button"
+                onClick={() => data.scrollHandler(data.contact)}
+                className={` text-[16px] text-stone-800 transition transform ease-linear duration-150 hover:scale-110 px-[20px] sm:px-[10px] absolute bottom-10 sm:my-3 py-1 rounded-lg font-semibold border-2 border-indigo-800 hover:text-white hover:bg-violet-800 `}
+              >
+                Let's talk <ArrowOutwardIcon />
+              </button>
             </div>
-            <div className=" md:invisible lg:invisible visible ">
+            {/* <div className=" md:invisible lg:invisible visible ">
               <img
                 className="w-[200px] lg:w-auto md:w-[200px] sm:w-[80px] h-[300px] lg:h-auto md:h-[200px] sm:h-[calc(100%-30px)] sm:my-auto object-cover   "
                 src={`${process.env.PUBLIC_URL}/Images/hello.gif`}
                 alt="Hello_image"
               />
-            </div>
+            </div> */}
           </div>
           {/* Profile Photo */}
 
-          <div className="relative Image rounded-full w-[300px] lg:w-[250px] md:w-[200px] sm:w-[100px] h-[300px] lg:h-[250px] md:h-[200px] sm:h-[100px] mx-[30px] lg:mx-[20px] md:mx-[10px] sm:mx-[5px] my-auto sm:my-[0px] sm:order-first">
+          <div className="relative Image rounded-full md:w-[200px] md:h-[200px] md:mx-[10px] my-auto md:absolute md:bottom-5 md:right-2 sm:absolute sm:bottom-6 sm:right-8">
             <img
-              className={`${
-                data.mode ? " shadow-indigo-600/80" : " shadow-amber-400"
-              } shadow-2xl w-[300px] lg:w-[250px] md:w-[200px] sm:w-[100px] h-[300px] lg:h-[250px] md:h-[200px] sm:h-[100px] object-cover rounded-full `}
+              className={` shadow-indigo-600/80 shadow-2xl w-[300px] lg:max-w-[250px] lg:min-w-[200px] md:max-w-[200px] sm:max-w-[200px] h-[300px] lg:max-h-[250px] lg:min-h-[200px] md:max-h-[200px] sm:max-h-[200px] object-cover rounded-full `}
               src={`${process.env.PUBLIC_URL}/Images/profile.jpg`}
               alt="My profile"
             />

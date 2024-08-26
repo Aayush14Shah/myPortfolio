@@ -64,7 +64,7 @@ const Carousel = () => {
                       {item.title}
                     </h1>
                     <p
-                      className={`leading-normal text-justify ${
+                      className={` leading-normal text-justify ${
                         data.mode ? "text-slate-600" : "text-white "
                       } sm:leading-relaxed `}
                     >

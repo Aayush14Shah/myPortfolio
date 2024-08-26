@@ -140,7 +140,7 @@ const Section2 = (props) => {
     <div
       ref={props.reference}
       className={`w-full h-screen p-5 lg:p-2 md:p-2 grid grid-rows-3 grid-flow-col lg:grid-flow-row md:grid-flow-row sm:grid-flow-row gap-4 sm:space-y-4 justify-around  ${
-        data.mode ? "bg-white" : "bg-[#1f2235]"
+        data.mode ? "bg-gray-100" : "bg-[#1f2235]"
       } `}
     >
       {/* {mobileScreen ? ( */}
@@ -211,7 +211,7 @@ const Section2 = (props) => {
         } ${data.mode ? "text-slate-800" : "text-white"}  `}
       >
         <h1 className=" text-3xl md:text-2xl sm:text-2xl font-semibold font-stone-400 w-auto">
-          I am good at
+         Why would you hire me?
         </h1>
         {skills.map((item) => (
           <div
