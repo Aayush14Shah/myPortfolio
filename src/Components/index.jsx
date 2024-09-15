@@ -43,11 +43,11 @@ const Index = (props) => {
         <div
           ref={container}
           className={` bg-[url('/public/images/indexBg.avif')] bg-cover bg-center rounded-md h-[500px] lg:h-[500px] md:h-[500px] max-w-[calc(100%-10%)] min-w-[1000px] lg:min-w-[700px] md:max-w-[800px] md:min-w-[500px]
-          sm:max-w-[calc(100%-6%)] sm:min-w-[300px] sm:h-[500px] p-[2%] flex flex-row  ${
+          sm:max-w-[calc(100%-6%)] sm:min-w-full sm:h-full p-[2%] flex flex-row  ${
             data.mode ? "bg-indigo-100" : "bg-[#313552]"
           }  ${
             data.mode ? "text-slate-800" : "text-white"
-          } justify-between lg:justify-around  mt-[40px] sm:mt-[50px] mx-auto `}
+          } justify-between lg:justify-around  mt-[40px] sm:my-auto mx-auto overflow-hidden `}
         >
           {/* Short description */}
           <div
@@ -61,17 +61,17 @@ const Index = (props) => {
                 Hello, my name is
               </p>
               <p
-                className={`text-left text-5xl lg:text-4xl md:text-4xl sm:text-4xl font-semibold tracking-8 my-2 text-indigo-800 `}
+                className={`text-left text-5xl lg:text-4xl md:text-4xl sm:text-3xl font-semibold tracking-8 my-2 text-indigo-800 `}
               >
                 Aayush Shah.
-                <p className={` mt-4`}>I build things for the web</p>
+                <p className={`mt-4`}>I build things for the web</p>
               </p>
               <span
                 className={`text-xl sm:text-lg text-stone-800 `}
               >
                 I'am a
                 <h1
-                  className={`text-5xl lg:text-4xl md:text-4xl sm:text-4xl font-bold text-indigo-800`}
+                  className={`text-5xl lg:text-4xl md:text-4xl sm:text-3xl font-bold text-indigo-800`}
                 >
                   <Typewriter
                     options={{
@@ -87,7 +87,7 @@ const Index = (props) => {
                 id="talk"
                 type="button"
                 onClick={() => data.scrollHandler(data.contact)}
-                className={` text-[16px] text-stone-800 transition transform ease-linear duration-150 hover:scale-110 px-[20px] sm:px-[10px] absolute bottom-10 sm:my-3 py-1 rounded-lg font-semibold border-2 border-indigo-800 hover:text-white hover:bg-violet-800 `}
+                className={` text-[16px] text-stone-800 transition transform ease-linear duration-150 hover:scale-110 px-[20px] sm:px-[6px] absolute bottom-10 sm:my-3 py-1 rounded-lg font-semibold border-2 border-indigo-800 hover:text-white hover:bg-violet-800 `}
               >
                 Let's talk <ArrowOutwardIcon />
               </button>
@@ -102,9 +102,9 @@ const Index = (props) => {
           </div>
           {/* Profile Photo */}
 
-          <div className="relative Image rounded-full md:w-[200px] md:h-[200px] md:mx-[10px] my-auto md:absolute md:bottom-5 md:right-2 sm:absolute sm:bottom-6 sm:right-8">
+          <div className="relative Image rounded-full md:mx-[10px] my-auto md:absolute md:bottom-5 md:right-2 sm:absolute sm:bottom-6 sm:right-8 ">
             <img
-              className={` shadow-indigo-600/80 shadow-2xl w-[300px] lg:max-w-[250px] lg:min-w-[200px] md:max-w-[200px] sm:max-w-[200px] h-[300px] lg:max-h-[250px] lg:min-h-[200px] md:max-h-[200px] sm:max-h-[200px] object-cover rounded-full `}
+              className={` shadow-indigo-600/80 shadow-2xl w-[300px] lg:max-w-[250px] lg:min-w-[200px] md:max-w-[200px] sm:max-w-[130px] h-[300px] lg:max-h-[250px] lg:min-h-[200px] md:max-h-[200px] sm:max-h-[130px] object-cover rounded-full `}
               src={`${process.env.PUBLIC_URL}/Images/profile.jpg`}
               alt="My profile"
             />

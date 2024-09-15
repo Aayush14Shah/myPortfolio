@@ -24,13 +24,13 @@ const Navbar = (props) => {
     <Fragment>
       <nav
         className={`navbar w-full h-[60px] flex flex-row justify-between ${
-          data.mode ? `bg-indigo-100` : "bg-[#1f2235]"
+          data.mode ? `bg-indigo-100` : "bg-[#1f2235] border-b border-gray-50"
         }  `}
         // fixed top-0 left-0 z-50
       >
         <div className="flex my-auto justify-between">
           <h1
-            className={`text-2xl mx-8 sm:mx-6 md:mx-6 py-2 font-semibold ${
+            className={`text-2xl mx-8 sm:mx-6 md:mx-6 py-2  font-semibold ${
               data.mode ? "text-black" : "text-white"
             }  `}
           >

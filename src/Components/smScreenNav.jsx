@@ -6,12 +6,12 @@ import ToggleMode from "./Nav/toggleMode";
 const SmScreenNav = () => {
   const data = useContext(AppContext);
   return (
-    <div className={`w-full ${data.mode ? "" : "bg-[#1f2235] py-[5%] h-[100px] "}`}>
+    <div className={`w-full ${data.mode ? "" : "bg-[#1f2235] py-[5%] "}`}>
       <div
-        className={`navbar p-[3%] ${data.mode ? "my-[5%]" : "my-[0%]"} rounded-lg w-[calc(100%-10%)] mx-auto flex flex-row justify-between shadow-lg ${
+        className={`navbar p-[2%] ${data.mode ? "my-[5%]" : "my-[0%]"} rounded-md w-[calc(100%-8%)] mx-auto flex flex-row justify-between  ${
           data.mode
             ? `bg-indigo-100 shadow-indigo-300/90`
-            : "bg-[#1f2235] shadow-slate-600/60"
+            : "bg-[#313552] shadow-slate-600/60"
         } animate-navAppear animate-navContent sm:visible invisible `}
       >
         <BasicNav />
