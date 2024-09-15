@@ -43,7 +43,7 @@ const Index = (props) => {
         <div
           ref={container}
           className={` bg-[url('/public/images/indexBg.avif')] bg-cover bg-center rounded-md h-[500px] lg:h-[500px] md:h-[500px] max-w-[calc(100%-10%)] min-w-[1000px] lg:min-w-[700px] md:max-w-[800px] md:min-w-[500px]
-          sm:max-w-[calc(100%-6%)] sm:min-w-full sm:h-full p-[2%] flex flex-row  ${
+          sm:max-w-[calc(100%-6%)] sm:min-w-full sm:h-full p-[2%]   ${
             data.mode ? "bg-indigo-100" : "bg-[#313552]"
           }  ${
             data.mode ? "text-slate-800" : "text-white"
@@ -52,7 +52,7 @@ const Index = (props) => {
           {/* Short description */}
           <div
             ref={box1}
-            className={` p-3 lg:p-8 md:p-5 sm:p-2 rounded-md leading-8`}
+            className={`p-3 lg:p-2 md:p-5 sm:p-2 rounded-md leading-8`}
           >
             <div>
               <p
@@ -64,7 +64,7 @@ const Index = (props) => {
                 className={`text-left text-5xl lg:text-4xl md:text-4xl sm:text-3xl font-semibold tracking-8 my-2 text-indigo-800 `}
               >
                 Aayush Shah.
-                <p className={`mt-4`}>I build things for the web</p>
+                <p className={`mt-4 break-words `}>I build things for the web</p>
               </p>
               <span
                 className={`text-xl sm:text-lg text-stone-800 `}
@@ -87,7 +87,7 @@ const Index = (props) => {
                 id="talk"
                 type="button"
                 onClick={() => data.scrollHandler(data.contact)}
-                className={` text-[16px] text-stone-800 transition transform ease-linear duration-150 hover:scale-110 px-[20px] sm:px-[6px] absolute bottom-10 sm:my-3 py-1 rounded-lg font-semibold border-2 border-indigo-800 hover:text-white hover:bg-violet-800 `}
+                className={` text-[16px] text-stone-800 transition transform ease-linear duration-150 hover:scale-110 px-[20px] sm:px-[6px] absolute bottom-10 sm:bottom-[25%] sm:my-3 py-1 rounded-lg font-semibold border-2 border-indigo-800 hover:text-white hover:bg-violet-800 `}
               >
                 Let's talk <ArrowOutwardIcon />
               </button>
@@ -102,9 +102,9 @@ const Index = (props) => {
           </div>
           {/* Profile Photo */}
 
-          <div className="relative Image rounded-full md:mx-[10px] my-auto md:absolute md:bottom-5 md:right-2 sm:absolute sm:bottom-6 sm:right-8 ">
+          <div className=" Image rounded-full md:mx-[10px] my-auto absolute bottom-[3%] right-[5%] ">
             <img
-              className={` shadow-indigo-600/80 shadow-2xl w-[300px] lg:max-w-[250px] lg:min-w-[200px] md:max-w-[200px] sm:max-w-[130px] h-[300px] lg:max-h-[250px] lg:min-h-[200px] md:max-h-[200px] sm:max-h-[130px] object-cover rounded-full `}
+              className={` shadow-indigo-600/80 shadow-2xl w-[250px] lg:max-w-[230px] lg:min-w-[200px] md:max-w-[200px] sm:max-w-[150px] h-[450px] lg:max-h-[430px] lg:min-h-[400px] md:max-h-[200px] sm:max-h-[150px] object-cover rounded-full my-auto `}
               src={`${process.env.PUBLIC_URL}/Images/profile.jpg`}
               alt="My profile"
             />
