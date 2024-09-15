@@ -64,14 +64,14 @@ const Index = (props) => {
                 className={`text-left text-5xl lg:text-4xl md:text-4xl sm:text-3xl font-semibold tracking-8 my-2 text-indigo-800 `}
               >
                 Aayush Shah.
-                <p className={`mt-4 break-words `}>I build things for the web</p>
+                <p className={`mt-4 lg:w-[400px] md:w-[250px] `}>I build things for the web</p>
               </p>
               <span
                 className={`text-xl sm:text-lg text-stone-800 `}
               >
                 I'am a
                 <h1
-                  className={`text-5xl lg:text-4xl md:text-4xl sm:text-3xl font-bold text-indigo-800`}
+                  className={`md:w-[250px] text-5xl lg:text-4xl md:text-4xl sm:text-3xl font-bold text-indigo-800`}
                 >
                   <Typewriter
                     options={{
@@ -87,7 +87,7 @@ const Index = (props) => {
                 id="talk"
                 type="button"
                 onClick={() => data.scrollHandler(data.contact)}
-                className={` text-[16px] text-stone-800 transition transform ease-linear duration-150 hover:scale-110 px-[20px] sm:px-[6px] absolute bottom-10 sm:bottom-[25%] sm:my-3 py-1 rounded-lg font-semibold border-2 border-indigo-800 hover:text-white hover:bg-violet-800 `}
+                className={` text-[16px] text-stone-800 transition transform ease-linear duration-150 hover:scale-110 px-[20px] sm:px-[6px] absolute bottom-10 sm:bottom-[5%] sm:my-3 py-1 rounded-lg font-semibold border-2 border-indigo-800 hover:text-white hover:bg-violet-800 `}
               >
                 Let's talk <ArrowOutwardIcon />
               </button>
@@ -102,9 +102,9 @@ const Index = (props) => {
           </div>
           {/* Profile Photo */}
 
-          <div className=" Image rounded-full md:mx-[10px] my-auto absolute bottom-[3%] right-[5%] ">
+          <div className=" Image rounded-full md:mx-[10px] my-auto absolute bottom-[5%] right-[5%] ">
             <img
-              className={` shadow-indigo-600/80 shadow-2xl w-[250px] lg:max-w-[230px] lg:min-w-[200px] md:max-w-[200px] sm:max-w-[150px] h-[450px] lg:max-h-[430px] lg:min-h-[400px] md:max-h-[200px] sm:max-h-[150px] object-cover rounded-full my-auto `}
+              className={` shadow-indigo-600/80 shadow-2xl w-[250px] lg:max-w-[230px] lg:min-w-[200px] md:max-w-[190px] sm:max-w-[140px] h-[450px] lg:max-h-[430px] lg:min-h-[400px] md:max-h-[390px] sm:max-h-[260px] object-cover rounded-full my-auto `}
               src={`${process.env.PUBLIC_URL}/Images/profile.jpg`}
               alt="My profile"
             />
