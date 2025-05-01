@@ -1,35 +1,39 @@
 const imageSliderContent = [
   {
     id:0,
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_tiBRwyGODtpBUM-7BcJoZNxbJqK84BqtZg&s",
-    title: "Project 1",
+    image:"/images/todoProject.png",
+    video:"/videos/todoProjectVideo.mp4",
+    title: "Todo list ",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint veniam quam cupiditate. Quae tempore repellendus quos beatae, quia magnam voluptates?",
+    github: "https://github.com/Aayush14Shah/todolist"
   },
   {
     id:1,
-    image:
-      "https://images.unsplash.com/photo-1626354132377-fa994612a006?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHdpbGQlMjBhbmltYWx8ZW58MHx8MHx8fDA%3D",
-    title: "Project 2",
+    image:"/images/textutilsProject.png",
+    video:"/videos/textutilsProjectVideo.mp4",
+    title: "Textutils",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint veniam quam cupiditate. Quae tempore repellendus quos beatae, quia magnam voluptates?",
+    github: "https://github.com/Aayush14Shah/textutils"
   },
   {
     id:2,
-    image:
-      "https://images.unsplash.com/photo-1520552159191-e28a1d9f0d7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d2lsZGxpZmV8ZW58MHx8MHx8fDA%3D",
-    title: "Project 3",
+    image:"/images/pixabayProject.png",
+    video:"/videos/pixabayProjectVideo.mp4",
+    title: "Pixabay Image Finder",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint veniam quam cupiditate. Quae tempore repellendus quos beatae, quia magnam voluptates?",
+    github: "https://github.com/Aayush14Shah/pixabay_image_finder"
   },
   {
     id:3,
-    image:
-      "https://images.unsplash.com/photo-1456926631375-92c8ce872def?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHdpbGRsaWZlfGVufDB8fDB8fHww",
-    title: "Project 4",
+    image:"/images/pixabayProject2.png",
+    video:"/videos/pixabayProjectVideo2.mp4",
+    title: "Image Finder",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint veniam quam cupiditate. Quae tempore repellendus quos beatae, quia magnam voluptates?",
+    github: "https://github.com/Aayush14Shah/tailwind-css"
   },
   {
     id:4,

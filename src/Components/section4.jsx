@@ -1,19 +1,10 @@
-import React, {
-  useContext,
-  useRef,
-  useState,
-  lazy,
-  Suspense,
-  useEffect,
-} from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { AppContext } from "./AppContext";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import SendIcon from "@mui/icons-material/Send";
-// import CertificatePopUp from "./certificatePopUp";
-import axios from "axios";
-
-const CertificatePopUp = lazy(() => import("./certificatePopUp"));
+import emailjs from "@emailjs/browser";
+import CertificateCarousel from "./richComponents/certificateCarousel";
 
 const Section4 = (props) => {
   const data = useContext(AppContext);
@@ -21,7 +12,6 @@ const Section4 = (props) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [errors, setErrors] = useState({});
 
   const smMaxScreenWidth = 567;
 
@@ -49,31 +39,28 @@ const Section4 = (props) => {
     return () => window.removeEventListener("resize", updateScreenSettings);
   });
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const form = useRef();
 
-    try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api/user/response",
-        {
-          name,
-          email,
-          message,
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_dzg2s9v",
+        "template_7gfcuvg",
+        form.current,
+        "iMkUkLzOHseUc2EKy"
+      )
+      .then(
+        (result) => {
+          alert("Message sent successfully!");
+          form.current.reset();
+        },
+        (error) => {
+          alert("Failed to send message, please try again.");
+          console.error("EmailJS Error:", error);
         }
       );
-
-      console.log("Data saved successfully:", response.data);
-      setErrors({}); // Clear errors if successful
-      setName(""); // Clear form
-      setEmail("");
-      setMessage("");
-    } catch (error) {
-      if (error.response && error.response.status === 422) {
-        setErrors(error.response.data.errors);
-      } else {
-        console.error("Error saving data:", error);
-      }
-    }
   };
 
   return (
@@ -86,26 +73,20 @@ const Section4 = (props) => {
       <div
         className={`w-full h-full rounded-lg grid grid-cols-2 md:grid-cols-1 md:grid-rows-2 sm:grid-cols-1 sm:space-y-4 `}
       >
-        <div className="sm:w-full h-auto mx-auto my-auto sm:block hidden">
-          {isSmall && (
-            <Suspense fallback="Loading...">
-              <CertificatePopUp btnTitle="See My Certificates" />
-            </Suspense>
-          )}
-        </div>
         <div
-          className={`sm:hidden block p-5 xl:p-5 md:p-2 ${
+          className={`w-full h-full mx-auto my-auto p-5 ${
             data.mode ? "bg-indigo-200" : "bg-[#313552]"
-          }`}
+          } flex flex-col justify-center items-start`} // Changed items-center to items-start
+          style={{ minHeight: "500px", minWidth: "100%" }}
         >
           <h1
             ref={text}
             className={`space-y-4 md:space-y-0 md:space-x-2 flex flex-col md:flex-row sm:flex-row sm:space-y-0 sm:space-x-2 ${
               data.mode ? "" : "text-white"
-            }`}
+            } w-full`} // Added w-full to ensure full width
           >
             <span
-              className={` ${
+              className={`${
                 data.mode ? "text-indigo-600" : "text-fuchsia-300"
               } text-4xl md:text-3xl sm:text-2xl font-normal `}
             >
@@ -114,11 +95,15 @@ const Section4 = (props) => {
             <span
               className={`${
                 data.mode ? "text-indigo-600" : "text-fuchsia-300"
-              }  text-4xl md:text-3xl sm:text-2xl font-normal`}
+              } text-4xl md:text-3xl sm:text-2xl font-normal`}
             >
               Certificates
             </span>
           </h1>
+          <div
+            className={`h-[8px] bg-gradient-to-r from-violet-500 to-indigo-300 rounded-sm w-full my-4`}
+          ></div>
+          <CertificateCarousel />
         </div>
         <div
           className={`bg-indigo-100 px-5 py-5 md:p-2 sm:p-2 md:overflow-y-scroll`}
@@ -134,7 +119,8 @@ const Section4 = (props) => {
           </div>
           <div>
             <form
-              onSubmit={handleSubmit}
+              ref={form}
+              onSubmit={sendEmail}
               className="form p-2 sm:p-2 xl:p-0 lg:p-0 space-y-4 lg:space-y-4 mt-[5%] xl:mt-[3%] sm:mt-0 sm:space-y-2 "
             >
               <div
@@ -150,12 +136,13 @@ const Section4 = (props) => {
                   </label>
                   <input
                     type="text"
+                    name="user_name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="E.g:- Rohit Sharma"
                     className={`bg-indigo-200 rounded-md px-[3%] lg:py-[2%] py-[3%] text-lg w-auto focus:border-2 text-black tracking-wide placeholder-indigo-400 font-semibold border-indigo-500 caret-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-300`}
+                    required
                   />
-                  {errors.name && <div className="error">{errors.name[0]}</div>}
                 </div>
                 <div
                   className={`flex flex-col lg:space-y-4 sm:space-y-2 space-y-6 w-full `}
@@ -166,15 +153,14 @@ const Section4 = (props) => {
                     Email
                   </label>
                   <input
-                    type="text"
+                    type="email"
+                    name="user_email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="E.g:- rohit45@gmail.com"
                     className={`bg-indigo-200 rounded-md px-[3%] lg:py-[2%] py-[3%] text-lg w-auto focus:border-2 border-indigo-500 text-black tracking-wide placeholder-indigo-400 font-semibold border-indigo-500 caret-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-300`}
+                    required
                   />
-                  {errors.email && (
-                    <div className="error">{errors.email[0]}</div>
-                  )}
                 </div>
               </div>
               <div className={`flex flex-col space-y-4 w-full sm:space-y-2`}>
@@ -184,19 +170,18 @@ const Section4 = (props) => {
                   Message
                 </label>
                 <textarea
+                  name="message"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   rows={5}
                   placeholder="Challenges are what make life interesting, and overcoming them is what makes life meaningful. Face them head-on."
                   className={`sm:text-sm resize-none lg:h-[100px] sm:h-[110px] bg-indigo-200 rounded-md px-[3%] py-[3%] text-lg w-auto focus:border-2 border-indigo-500 text-black tracking-wide placeholder-indigo-400 font-semibold border-indigo-500 caret-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-300`}
+                  required
                 />
-                {errors.message && (
-                  <div className="error">{errors.message[0]}</div>
-                )}
               </div>
               <button
                 type="submit"
-                className={` text-lg text-indigo-600 px-[30px] lg:px-[20px] sm:py-1  sm:px-[10px] sm:my-3 py-2 rounded-md font-semibold ${
+                className={` text-lg text-indigo-600 px-[30px] lg:px-[20px] sm:py-1 sm:px-[10px] sm:my-3 py-2 rounded-md font-semibold ${
                   data.mode
                     ? "border-2 border-indigo-800 hover:text-white hover:bg-violet-800 "
                     : "border-2 border-[#313552] hover:text-amber-300 hover:bg-[#313552] "

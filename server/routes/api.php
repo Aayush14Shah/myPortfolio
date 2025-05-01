@@ -15,5 +15,17 @@ use App\Http\Controllers\UserResponseController;
 |
 */
 
-Route::post('/user/response', [UserResponseController::class,'store']);
+Route::post('/user/response', function (Request $request) {
+    $data = $request->validate([
+        'name' => 'required',
+        'email' => 'required|email',
+        'message' => 'required',
+    ]);
+
+    Mail::raw("Name: {$data['name']}\nEmail: {$data['email']}\nMessage: {$data['message']}", function ($message) use ($data) {
+        $message->to('aayushshah140205email@gmail.com')->subject('New Contact Form Submission');
+    });
+
+    return response()->json(['message' => 'Email sent successfully'], 200);
+});
 
