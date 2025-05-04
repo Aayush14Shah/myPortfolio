@@ -18,6 +18,9 @@ const CertificateCarousel = () => {
     setCurrent(newIndex);
   };
 
+  // Find the current certificate to display
+  const currentCertificate = certificateData.find((item) => item.id === current);
+
   return (
     <>
       <div
@@ -25,53 +28,55 @@ const CertificateCarousel = () => {
           data.mode ? "bg-white" : "bg-[#1f2235]"
         } `}
       >
-        {certificateData.map((item) => {
-          return (
-            current === item.id && (
-              <div
-                className="mx-auto my-auto overflow-hidden animate-navContent w-full"
-                key={item.id}
-              >
-                <div
-                  className={`w-full lg:w-[calc(100%-10%)] md:w-[calc(100%-10%)] sm:w-[calc(100%-15%)] md:mx-auto lg:mx-auto h-[300px] md:h-[320px] sm:h-[300px] sm:mx-auto rounded-lg grid grid-cols-2 sm:flex sm:flex-col sm:my-auto ${
-                    data.mode
-                      ? "bg-indigo-100"
-                      : "border-2 border-[#313552] bg-[#313552]"
-                  } sm:overflow-y-auto `}
-                >
-                  <div className="flex justify-center items-center p-4 sm:p-2">
-                    <img
-                      className="h-[280px] w-[350px] md:w-[320px] sm:w-[250px] sm:h-[200px] object-cover rounded-lg border-2 border-white"
-                      alt={item.title}
-                      src={item.image}
-                    />
-                  </div>
-                  <div
-                    className={`h-[300px] p-6 md:p-4 sm:p-3 space-y-4 md:space-y-3 sm:space-y-2 flex flex-col justify-start sm:overflow-y-auto`} // Adjusted padding and justified content to start
-                  >
-                    <h1
-                      className={`${
-                        data.mode ? "text-slate-600" : "text-white"
-                      } font-bold text-xl md:text-lg sm:text-base line-clamp-2`} // Added line-clamp to prevent overflow
-                    >
-                      {item.title}
-                    </h1>
-                    <p
-                      className={`leading-normal text-justify ${
-                        data.mode ? "text-slate-600" : "text-white"
-                      } sm:leading-relaxed text-base md:text-sm sm:text-xs overflow-y-auto`} // Adjusted font sizes and added overflow
-                    >
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
+        {currentCertificate ? (
+          <div
+            className="mx-auto my-auto overflow-hidden animate-navContent w-full"
+            key={currentCertificate.id}
+          >
+            <div
+              className={`w-full lg:w-[calc(100%-10%)] md:w-[calc(100%-10%)] sm:w-[calc(100%-15%)] md:mx-auto lg:mx-auto h-[300px] md:h-[320px] sm:h-[300px] sm:mx-auto rounded-lg grid grid-cols-2 sm:flex sm:flex-col sm:my-auto ${
+                data.mode
+                  ? "bg-indigo-100"
+                  : "border-2 border-[#313552] bg-[#313552]"
+              } sm:overflow-y-auto `}
+            >
+              <div className="flex justify-center items-center p-4 sm:p-2">
+                <img
+                  className="h-[280px] w-[350px] md:w-[320px] sm:w-[250px] sm:h-[200px] object-cover rounded-lg border-2 border-white"
+                  alt={currentCertificate.title}
+                  src={currentCertificate.image}
+                />
               </div>
-            )
-          );
-        })}
+              <div
+                className={`h-[300px] p-6 md:p-4 sm:p-3 space-y-4 md:space-y-3 sm:space-y-2 flex flex-col justify-start sm:overflow-y-auto`}
+              >
+                <h1
+                  className={`${
+                    data.mode ? "text-slate-600" : "text-white"
+                  } font-bold text-xl md:text-lg sm:text-base line-clamp-2`}
+                >
+                  {currentCertificate.title}
+                </h1>
+                <p
+                  className={`leading-normal text-justify ${
+                    data.mode ? "text-slate-600" : "text-white"
+                  } sm:leading-relaxed text-base md:text-sm sm:text-xs overflow-y-auto`}
+                >
+                  {currentCertificate.description}
+                </p>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="w-full h-full flex justify-center items-center">
+            <p className={`${data.mode ? "text-slate-600" : "text-white"}`}>
+              No certificate found.
+            </p>
+          </div>
+        )}
       </div>
       <div
-        className={`flex justify-between w-full xl:w-[calc(100%-10%)] lg:w-[calc(100%-10%)] md:w-[calc(100%-2%)] sm:w-[calc(100%-2%)] mx-auto mt-4`} // Added mt-4 for spacing
+        className={`flex justify-between w-full xl:w-[calc(100%-10%)] lg:w-[calc(100%-10%)] md:w-[calc(100%-2%)] sm:w-[calc(100%-2%)] mx-auto mt-4`}
       >
         <button
           type="button"
