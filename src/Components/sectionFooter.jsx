@@ -1,37 +1,87 @@
 import React, { useContext } from "react";
 import { AppContext } from "./AppContext";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
 
 const LastSectionFooter = () => {
   const data = useContext(AppContext);
+  const isLight = data.mode;
+
   return (
     <div
-      className={`w-full h-[60px] sm:h-full py-[0.5%] sm:py-[2%] px-[4%] md:px-[2%] ${
-        data.mode ? "bg-slate-800" : "bg-[#313552]"
-      }  `}
+      className={`w-full py-6 sm:py-6 md:py-6 lg:py-8 xl:py-8 px-4 sm:px-4 md:px-5 lg:px-6 xl:px-8 transition-colors duration-300 ${
+        isLight ? "bg-indigo-100" : "bg-gray-900"
+      }`}
     >
       <div
-        className={`text-md text-indigo-100 sm:space-y-2 sm:text-center flex sm:flex-col md:text-sm md:my-[1.5%] lg:my-[1%] xl:my-[0.5%] justify-between  `}
+        className={`flex flex-row justify-between items-center text-left gap-6 sm:gap-4 md:gap-4 lg:gap-0 sm:flex-col sm:items-center sm:text-center md:flex-col md:items-center md:text-center`}
       >
-        <p className="tracking-wide my-auto ">&copy; by aayush. All rights reserved</p>
-        <div className="tracking-wide flex space-x-2 sm:mx-auto">
-          <a href="https://www.instagram.com/aayush.___.14/" className="  hover:text-indigo-300 border-2 border-gray-500 p-2 rounded-full cursor-pointer ">
-            <InstagramIcon />
-          </a>
-          <a href="https://www.linkedin.com/in/aayush14/" 
-          target="blank"
-          className="hover:text-indigo-300 border-2 border-gray-500 p-2 rounded-full cursor-pointer">
-            <LinkedInIcon />
-          </a>
-        </div>
-        <p
-          className="tracking-wide cursor-pointer my-auto hover:text-indigo-300"
-          onClick={() => data.scrollHandler(data.contact)}
+        {/* Branding */}
+        <div
+          className={`text-lg sm:text-base md:text-base lg:text-lg xl:text-lg font-semibold ${
+            isLight ? "text-indigo-700" : "text-indigo-300"
+          }`}
         >
-          <EmailIcon /> ljkuaayush@gmail.com
-        </p>
+          Aayush Shah | Portfolio
+        </div>
+
+        {/* Navigation Links */}
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-4 md:gap-4 lg:gap-5 xl:gap-6">
+          {["Home", "About", "Projects", "Contact"].map((item) => (
+            <div
+              key={item}
+              onClick={() => data.scrollHandler(data[item.toLowerCase()])}
+              className={`text-sm sm:text-xs md:text-sm lg:text-sm xl:text-sm font-medium cursor-pointer transition-colors duration-200 ${
+                isLight
+                  ? "text-gray-700 hover:text-indigo-600"
+                  : "text-gray-300 hover:text-indigo-400"
+              }`}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+
+        {/* Social Icons & Email */}
+        <div className="flex flex-col sm:flex-col md:flex-col lg:flex-row items-center gap-3 sm:gap-2 md:gap-2 lg:gap-3 xl:gap-3">
+          <div className="flex space-x-3 sm:space-x-2 md:space-x-2 lg:space-x-3 xl:space-x-3">
+            <a
+              href="https://www.instagram.com/aayush.___.14/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`border-2 p-1.5 sm:p-1 md:p-1 lg:p-1.5 xl:p-1.5 rounded-full transition-colors duration-200 ${
+                isLight
+                  ? "text-gray-700 hover:text-indigo-600 border-gray-300"
+                  : "text-gray-300 hover:text-indigo-400 border-gray-600"
+              }`}
+            >
+              <InstagramIcon className="w-5 h-5 sm:w-4 sm:h-4 md:w-4 md:h-4 lg:w-5 lg:h-5" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/aayush14/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`border-2 p-1.5 sm:p-1 md:p-1 lg:p-1.5 xl:p-1.5 rounded-full transition-colors duration-200 ${
+                isLight
+                  ? "text-gray-700 hover:text-indigo-600 border-gray-300"
+                  : "text-gray-300 hover:text-indigo-400 border-gray-600"
+              }`}
+            >
+              <LinkedInIcon className="w-5 h-5 sm:w-4 sm:h-4 md:w-4 md:h-4 lg:w-5 lg:h-5" />
+            </a>
+          </div>
+          <p
+            onClick={() => data.scrollHandler(data.contact)}
+            className={`text-sm sm:text-xs md:text-xs lg:text-sm xl:text-sm font-medium cursor-pointer flex items-center gap-1 transition-colors duration-200 ${
+              isLight
+                ? "text-gray-700 hover:text-indigo-600"
+                : "text-gray-300 hover:text-indigo-400"
+            }`}
+          >
+            <EmailIcon className="w-5 h-5 sm:w-4 sm:h-4 md:w-4 md:h-4 lg:w-5 lg:h-5" /> ljkuaayush@gmail.com
+          </p>
+        </div>
       </div>
     </div>
   );

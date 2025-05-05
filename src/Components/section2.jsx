@@ -14,7 +14,6 @@ const Section2 = (props) => {
     { value: 0, finalValue: 60, color: defaultRangeColor, tag: "React" },
   ]);
 
-  // Animate progress bars
   useEffect(() => {
     const animateBars = setTimeout(() => {
       setBars((prevBars) =>
@@ -38,7 +37,7 @@ const Section2 = (props) => {
   const smMinScreenWidth = 300;
   const smMaxScreenWidth = 567;
   const [mobileScreen, setMobileScreen] = useState(false);
-  const [radius, setRadius] = useState(40);
+  const [radius, setRadius] = useState(30);
 
   useEffect(() => {
     const updateScreenSettings = () => {
@@ -48,12 +47,12 @@ const Section2 = (props) => {
         (window.innerWidth >= mdMinScreenWidth &&
           window.innerWidth <= mdMaxScreenWidth)
       ) {
-        setRadius(30);
+        setRadius(25);
       } else if (
         window.innerWidth >= smMinScreenWidth &&
         window.innerWidth <= smMaxScreenWidth
       ) {
-        setRadius(23);
+        setRadius(20);
         setMobileScreen(true);
       } else if (
         window.innerWidth >= xlMinScreenWidth &&
@@ -61,7 +60,7 @@ const Section2 = (props) => {
       ) {
         setRadius(28);
       } else {
-        setRadius(40);
+        setRadius(30);
       }
     };
 
@@ -76,7 +75,6 @@ const Section2 = (props) => {
   const [value3, setValue3] = useState(0);
   const [value4, setValue4] = useState(0);
 
-  // Animate circular progress
   useEffect(() => {
     const animateCircles = setTimeout(() => {
       if (value1 !== 90) setValue1(value1 + 1);
@@ -131,9 +129,9 @@ const Section2 = (props) => {
 
       {/* About Me Section */}
       <div
-        className={`sm:hidden block rounded-md w-full h-full p-5 lg:p-4 md:p-3 sm:p-2 overflow-y-auto my-auto row-span-3 lg:row-span-2 md:row-span-2 sm:row-span-1 sm:col-span-2 mx-auto ${
+        className={`sm:hidden block rounded-md w-full h-full p-5 lg:p-4 md:p-3 sm:p-2 row-span-3 lg:row-span-2 md:row-span-2 sm:row-span-1 sm:col-span-2 mx-auto ${
           data.mode ? "bg-indigo-100" : "bg-[#313552]"
-        } ${data.mode ? "text-gray-800" : "text-gray-100"}`}
+        } ${data.mode ? "text-gray-800" : "text-gray-100"} flex flex-col gap-4`}
       >
         <h1
           className={`text-4xl md:text-3xl sm:text-2xl font-bold ${
@@ -142,13 +140,15 @@ const Section2 = (props) => {
         >
           About Me
         </h1>
-        <div className="flex flex-col md:flex-col gap-4">
+        <div className="flex flex-col gap-4 flex-1">
           <div className="flex md:flex-col gap-4">
-            <img
-              className="w-[200px] h-[280px] xl:w-[180px] xl:h-[260px] lg:w-[160px] lg:h-[240px] md:w-[160px] md:h-[220px] rounded-lg object-cover"
-              src={`${process.env.PUBLIC_URL}/Images/profile2.jpg`}
-              alt="My profile"
-            />
+            <div className="flex-shrink-0">
+              <img
+                className="w-[200px] h-[280px] xl:w-[180px] xl:h-[260px] lg:w-[160px] lg:h-[240px] md:w-[160px] md:h-[220px] rounded-lg object-cover"
+                src={`${process.env.PUBLIC_URL}/Images/profile2.jpg`}
+                alt="My profile"
+              />
+            </div>
             <div className="flex-1 space-y-2">
               <h2
                 className={`text-xl font-semibold ${
@@ -160,7 +160,7 @@ const Section2 = (props) => {
               {hobbies.map((item) => (
                 <div
                   key={item.id}
-                  className={`text-base lg:text-sm font-medium p-2 rounded-lg flex justify-between items-center ${
+                  className={`text-[14px] lg:text-sm font-medium p-2 rounded-lg flex justify-between items-center ${
                     data.mode
                       ? "text-indigo-700 bg-indigo-50 border border-indigo-200"
                       : "text-yellow-400 bg-gray-700 border border-yellow-500"
@@ -175,19 +175,21 @@ const Section2 = (props) => {
               ))}
             </div>
           </div>
-          <p className="text-base sm:text-sm leading-relaxed text-justify mt-3">
-            I’m a passionate web developer with a knack for creating intuitive, user-friendly applications. With expertise in HTML, CSS, Javascript, and React, I thrive on solving complex problems and delivering high-quality solutions. My journey in tech is driven by a love for design and innovation.
-          </p>
+          <div className="mt-1 flex-1">
+            <p className="text-[14px] sm:text-sm leading-relaxed text-justify">
+              I’m a passionate web developer with a knack for creating intuitive, user-friendly applications. With expertise in HTML, CSS, Javascript, and React, I thrive on solving complex problems and delivering high-quality solutions. My journey in tech began with a curiosity for coding, which evolved into a full-fledged career where I’ve honed my skills through hands-on projects and continuous learning.
+            </p>
+          </div>
         </div>
       </div>
 
       {/* Skills Section */}
       <div
-        className={`rounded-md w-[800px] xl:w-[520px] lg:w-[320px] md:w-[300px] sm:w-full h-full p-5 lg:p-4 md:p-3 sm:p-2 overflow-y-auto my-auto col-span-2 lg:col-span-1 md:col-span-1 sm:col-span-2 row-span-3 sm:row-span-2 lg:row-span-2 md:row-span-2 mx-auto ${
+        className={`rounded-md w-[800px] xl:w-[520px] lg:w-[320px] md:w-[300px] sm:w-full h-full p-5 lg:p-4 md:p-3 sm:p-2 my-auto col-span-2 lg:col-span-1 md:col-span-1 sm:col-span-2 row-span-3 sm:row-span-2 lg:row-span-2 md:row-span-2 mx-auto ${
           data.mode ? "bg-indigo-100" : "bg-[#313552]"
         } ${data.mode ? "text-gray-800" : "text-gray-100"} flex flex-col gap-3`}
       >
-        <div className="w-full">
+        <div className="w-full flex-1">
           <h1
             className={`text-4xl md:text-3xl sm:text-2xl font-bold ${
               data.mode ? "text-indigo-600" : "text-indigo-400"
@@ -195,69 +197,75 @@ const Section2 = (props) => {
           >
             Why Hire Me?
           </h1>
-          {skills.map((item) => (
-            <div key={item.id} className="my-2">
-              <div
-                className={`text-base lg:text-sm font-medium p-2 rounded-lg flex justify-between items-center ${
-                  data.mode
-                    ? "text-indigo-700 bg-indigo-50 border border-indigo-200"
-                    : "text-yellow-400 bg-gray-700 border border-yellow-500"
+          <div className="space-y-0.5">
+            {skills.map((item) => (
+              <div key={item.id} className="my-0">
+                <div
+                  className={`text-base lg:text-sm font-medium p-2 rounded-lg flex justify-between items-center ${
+                    data.mode
+                      ? "text-indigo-700 bg-indigo-50 border border-indigo-200"
+                      : "text-yellow-400 bg-gray-700 border border-yellow-500"
                   }`}
-              >
-                <div>
-                  <p>{item.title}</p>
-                  <p className={`text-sm ${data.mode ? "text-gray-600" : "text-gray-300"}`}>{item.description}</p>
+                >
+                  <div>
+                    <p>{item.title}</p>
+                    <p className={`text-sm ${data.mode ? "text-gray-600" : "text-gray-300"}`}>{item.description}</p>
+                  </div>
+                  <SignalCellularAltIcon className="my-auto" />
                 </div>
-                <SignalCellularAltIcon className="my-auto" />
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {/* Programming Skills with Circular Progress */}
-        <div className="w-full p-4 rounded-lg border-2 border-indigo-600 overflow-hidden">
-          <h2 className={`text-2xl font-semibold ${data.mode ? "text-indigo-600" : "text-indigo-400"} mb-3`}>Technical Skills</h2>
-          <div className="grid grid-cols-4 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-3">
+        {/* Technical Skills with Circular Progress */}
+        <div className="w-full h-[300px] p-1 rounded-lg border-2 border-indigo-600">
+          <h2 className={`mx-[2%] text-xl font-semibold ${data.mode ? "text-indigo-600" : "text-indigo-400"} mb-1`}>Technical Skills</h2>
+          <div className="mt-[2%] grid grid-cols-4 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-1 justify-items-center">
             {circles.map((circle) => (
               <div
                 key={circle.tag}
-                className={`rounded-full w-[110px] xl:w-[90px] lg:w-[80px] md:w-[80px] sm:w-[70px] h-[110px] xl:h-[90px] lg:h-[80px] md:h-[80px] sm:h-[70px] mx-auto flex flex-col items-center justify-center ${
-                  data.mode ? "bg-indigo-50" : "bg-gray-700"
-                }`}
+                className={`flex flex-col items-center justify-center xl:w-[60px] xl:h-[80px] lg:w-[50px] lg:h-[70px] md:w-[50px] md:h-[70px] sm:w-[40px] sm:h-[60px]`}
               >
-                <div className="relative flex items-center justify-center w-[80px] h-[80px] lg:w-[60px] lg:h-[60px] sm:w-[50px] sm:h-[50px]">
-                  <svg className="w-full h-full">
+                <div className="relative w-[85px] h-[85px] xl:w-[50px] xl:h-[50px] lg:w-[40px] lg:h-[40px] sm:w-[30px] sm:h-[30px]">
+                  <svg className="w-full h-full" viewBox="0 0 100 100">
                     <circle
-                      cx="50%"
-                      cy="50%"
-                      r={radius}
+                      cx="50"
+                      cy="50"
+                      r="45"
                       stroke={data.mode ? "lightgray" : "darkgray"}
-                      strokeWidth="6"
+                      strokeWidth="10"
                       fill="transparent"
+                      strokeLinecap="round"
                     />
                     <circle
-                      cx="50%"
-                      cy="50%"
-                      r={radius}
+                      cx="50"
+                      cy="50"
+                      r="45"
                       stroke={circle.color}
-                      strokeWidth="6"
+                      strokeWidth="10"
                       fill="none"
-                      strokeDasharray={circumference}
-                      strokeDashoffset={calculateOffset(circle.value)}
+                      strokeDasharray={2 * Math.PI * 40}
+                      strokeDashoffset={calculateOffset(circle.value) * (40 / radius)}
                       style={{
                         transition: "stroke-dashoffset 0.5s linear",
                       }}
+                      strokeLinecap="round"
                     />
+                    <text
+                      x="50"
+                      y="50"
+                      textAnchor="middle"
+                      dy=".3em"
+                      className={`text-[20px] lg:text-[10px] sm:text-[8px] font-bold ${
+                        data.mode ? "text-gray-800" : "text-gray-100"
+                      }`}
+                    >
+                      {circle.value}%
+                    </text>
                   </svg>
-                  <span
-                    className={`absolute text-base lg:text-sm sm:text-xs font-bold ${
-                      data.mode ? "text-gray-800" : "text-gray-100"
-                    }`}
-                  >
-                    {circle.value}%
-                  </span>
                 </div>
-                <p className="text-center text-sm mt-1">{circle.tag}</p>
+                <p className="text-center text-xs lg:text-[10px] sm:text-[8px] mt-1">{circle.tag}</p>
               </div>
             ))}
           </div>
