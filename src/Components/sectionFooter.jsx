@@ -8,6 +8,23 @@ const LastSectionFooter = () => {
   const data = useContext(AppContext);
   const isLight = data.mode;
 
+  // Map navigation items to correct refs from AppContext
+  const navItems = [
+    { name: "Home", ref: data.index },
+    { name: "About", ref: data.about },
+    { name: "Projects", ref: data.project },
+    { name: "Contact", ref: data.contact },
+  ];
+
+  const handleScroll = (ref) => {
+    if (ref?.current) {
+      console.log(`Scrolling to ${ref.current.id || ref.current.tagName}`);
+      data.scrollHandler(ref);
+    } else {
+      console.warn(`Scroll reference is undefined or invalid: ${JSON.stringify(ref)}`);
+    }
+  };
+
   return (
     <div
       className={`w-full py-6 sm:py-6 md:py-6 lg:py-8 xl:py-8 px-4 sm:px-4 md:px-5 lg:px-6 xl:px-8 transition-colors duration-300 ${
@@ -28,17 +45,17 @@ const LastSectionFooter = () => {
 
         {/* Navigation Links */}
         <div className="flex flex-wrap justify-center gap-4 sm:gap-4 md:gap-4 lg:gap-5 xl:gap-6">
-          {["Home", "About", "Projects", "Contact"].map((item) => (
+          {navItems.map((item) => (
             <div
-              key={item}
-              onClick={() => data.scrollHandler(data[item.toLowerCase()])}
+              key={item.name}
+              onClick={() => handleScroll(item.ref)}
               className={`text-sm sm:text-xs md:text-sm lg:text-sm xl:text-sm font-medium cursor-pointer transition-colors duration-200 ${
                 isLight
                   ? "text-gray-700 hover:text-indigo-600"
                   : "text-gray-300 hover:text-indigo-400"
               }`}
             >
-              {item}
+              {item.name}
             </div>
           ))}
         </div>
@@ -72,12 +89,12 @@ const LastSectionFooter = () => {
             </a>
           </div>
           <p
-            onClick={() => data.scrollHandler(data.contact)}
+            onClick={() => handleScroll(data.contact)}
             className={`text-sm sm:text-xs md:text-xs lg:text-sm xl:text-sm font-medium cursor-pointer flex items-center gap-1 transition-colors duration-200 ${
               isLight
                 ? "text-gray-700 hover:text-indigo-600"
                 : "text-gray-300 hover:text-indigo-400"
-            }`}
+              }`}
           >
             <EmailIcon className="w-5 h-5 sm:w-4 sm:h-4 md:w-4 md:h-4 lg:w-5 lg:h-5" /> ljkuaayush@gmail.com
           </p>

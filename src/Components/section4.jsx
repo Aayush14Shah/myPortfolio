@@ -8,17 +8,17 @@ import CertificateCarousel from "./richComponents/certificateCarousel";
 
 const Section4 = (props) => {
   const data = useContext(AppContext);
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-
+  const [isSmall, setIsSmall] = useState(false);
   const smMaxScreenWidth = 567;
 
+  const form = useRef();
   const text = useRef();
-  var tl = gsap.timeline();
+
   useGSAP(() => {
-    tl.from(text.current, {
+    gsap.from(text.current, {
       y: -50,
       opacity: 0,
       duration: 1,
@@ -26,24 +26,17 @@ const Section4 = (props) => {
     });
   });
 
-  const [isSmall, setIsSmall] = useState(false);
   useEffect(() => {
     const updateScreenSettings = () => {
-      if (window.innerWidth <= smMaxScreenWidth) {
-        setIsSmall(true);
-      }
+      setIsSmall(window.innerWidth <= smMaxScreenWidth);
     };
-
     updateScreenSettings();
     window.addEventListener("resize", updateScreenSettings);
     return () => window.removeEventListener("resize", updateScreenSettings);
-  });
-
-  const form = useRef();
+  }, []);
 
   const sendEmail = (e) => {
     e.preventDefault();
-
     emailjs
       .sendForm(
         "service_dzg2s9v",
@@ -55,6 +48,9 @@ const Section4 = (props) => {
         (result) => {
           alert("Message sent successfully!");
           form.current.reset();
+          setName("");
+          setEmail("");
+          setMessage("");
         },
         (error) => {
           alert("Failed to send message, please try again.");
@@ -66,132 +62,117 @@ const Section4 = (props) => {
   return (
     <div
       ref={props.reference}
-      className={`w-full h-screen p-[3%] sm:p-[5%] xl:p-[3%] ${
+      className={`w-full min-h-screen sm:p-2 md:p-3 lg:p-4 xl:p-4 p-4 ${
         data.mode ? "bg-gray-100" : "bg-[#1f2235]"
-      } `}
+      } flex items-center justify-center`}
     >
       <div
-        className={`w-full h-full rounded-lg grid grid-cols-2 md:grid-cols-1 md:grid-rows-2 sm:grid-cols-1 sm:space-y-4 `}
+        className="w-full max-w-[1600px] min-h-[600px] rounded-lg grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 grid-cols-2 sm:grid-rows-[auto_auto] md:grid-rows-[auto_auto] sm:gap-4 md:gap-4 lg:gap-6 xl:gap-6 gap-6 auto-rows-fr"
       >
+        {/* Certificates Section */}
         <div
-          className={`w-full h-full mx-auto my-auto p-5 ${
+          className={`sm:p-2 md:p-3 lg:p-4 xl:p-4 p-4 ${
             data.mode ? "bg-indigo-200" : "bg-[#313552]"
-          } flex flex-col justify-center items-start`} // Changed items-center to items-start
-          style={{ minHeight: "500px", minWidth: "100%" }}
+          } flex flex-col rounded-lg shadow-lg sm:min-h-[300px] md:min-h-[350px] lg:min-h-[400px] xl:min-h-[450px] min-h-[500px]`}
         >
           <h1
-            ref={text}
-            className={`space-y-4 md:space-y-0 md:space-x-2 flex flex-col md:flex-row sm:flex-row sm:space-y-0 sm:space-x-2 ${
-              data.mode ? "" : "text-white"
-            } w-full`} // Added w-full to ensure full width
+            className={`flex sm:flex-col md:flex-row lg:flex-row xl:flex-row flex-row sm:space-y-1 md:space-x-2 lg:space-x-2 xl:space-x-2 space-x-2 sm:text-lg md:text-xl lg:text-2xl xl:text-2xl text-2xl font-semibold ${
+              data.mode ? "text-indigo-600" : "text-fuchsia-300"
+            }`}
           >
-            <span
-              className={`${
-                data.mode ? "text-indigo-600" : "text-fuchsia-300"
-              } text-4xl md:text-3xl sm:text-2xl font-normal `}
-            >
-              My
-            </span>
-            <span
-              className={`${
-                data.mode ? "text-indigo-600" : "text-fuchsia-300"
-              } text-4xl md:text-3xl sm:text-2xl font-normal`}
-            >
-              Certificates
-            </span>
+            <span>My</span>
+            <span>Certificates</span>
           </h1>
           <div
-            className={`h-[8px] bg-gradient-to-r from-violet-500 to-indigo-300 rounded-sm w-full my-4`}
-          ></div>
-          <CertificateCarousel />
+            className="sm:h-[4px] md:h-[4px] lg:h-[4px] xl:h-[4px] h-1 bg-gradient-to-r from-violet-500 to-indigo-300 rounded-sm w-full sm:my-1 md:my-2 lg:my-2 xl:my-2 my-2"
+          />
+          <CertificateCarousel isSmallScreen={isSmall} />
         </div>
+
+        {/* Contact Form Section */}
         <div
-          className={`bg-indigo-100 px-5 py-5 md:p-2 sm:p-2 md:overflow-y-scroll`}
+          className={`sm:p-2 md:p-3 lg:p-4 xl:p-4 p-4 bg-indigo-100 rounded-lg shadow-lg flex flex-col sm:min-h-[300px] md:min-h-[350px] lg:min-h-[400px] xl:min-h-[450px] min-h-[500px] sm:overflow-y-auto md:overflow-y-auto lg:overflow-hidden xl:overflow-hidden overflow-hidden sm:m-0 md:m-0`}
         >
-          <div className={`space-y-2 sm:space-y-0`}>
+          <div className="sm:space-y-1 md:space-y-2 lg:space-y-3 xl:space-y-3 space-y-3">
             <h1
               ref={text}
-              className={`text-5xl md:text-3xl sm:text-2xl font-extralight sm:font-normal`}
+              className={`sm:text-lg md:text-xl lg:text-2xl xl:text-2xl text-2xl font-semibold ${
+                data.mode ? "text-indigo-600" : "text-fuchsia-300"
+              }`}
             >
               Contact Me
             </h1>
-            <p className={`text-md`}>Your response will be sent to my Email</p>
+            <p className="sm:text-xs md:text-sm lg:text-sm xl:text-sm text-sm">
+              Your response will be sent to my Email
+            </p>
           </div>
-          <div>
-            <form
-              ref={form}
-              onSubmit={sendEmail}
-              className="form p-2 sm:p-2 xl:p-0 lg:p-0 space-y-4 lg:space-y-4 mt-[5%] xl:mt-[3%] sm:mt-0 sm:space-y-2 "
-            >
-              <div
-                className={`flex justify-between lg:flex-col sm:flex-col h-auto space-x-6 lg:space-y-4 lg:space-x-0 sm:space-y-2 sm:space-x-0`}
-              >
-                <div
-                  className={`flex flex-col lg:space-y-4 sm:space-y-2 space-y-6 w-full `}
-                >
-                  <label
-                    className={`font-semibold text-indigo-600 text-xl sm:text-lg underline underline-offset-8 sm:underline-offset-4 decoration-4 decoration--600 decoration-dashed `}
-                  >
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    name="user_name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="E.g:- Rohit Sharma"
-                    className={`bg-indigo-200 rounded-md px-[3%] lg:py-[2%] py-[3%] text-lg w-auto focus:border-2 text-black tracking-wide placeholder-indigo-400 font-semibold border-indigo-500 caret-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-300`}
-                    required
-                  />
-                </div>
-                <div
-                  className={`flex flex-col lg:space-y-4 sm:space-y-2 space-y-6 w-full `}
-                >
-                  <label
-                    className={`font-semibold text-indigo-600 text-xl sm:text-lg underline underline-offset-8 sm:underline-offset-4 decoration-4 decoration--600 decoration-dashed `}
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    name="user_email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="E.g:- rohit45@gmail.com"
-                    className={`bg-indigo-200 rounded-md px-[3%] lg:py-[2%] py-[3%] text-lg w-auto focus:border-2 border-indigo-500 text-black tracking-wide placeholder-indigo-400 font-semibold border-indigo-500 caret-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-300`}
-                    required
-                  />
-                </div>
-              </div>
-              <div className={`flex flex-col space-y-4 w-full sm:space-y-2`}>
+          <form
+            ref={form}
+            onSubmit={sendEmail}
+            className="flex flex-col sm:mt-2 md:mt-3 lg:mt-4 xl:mt-4 mt-4 sm:space-y-2 md:space-y-3 lg:space-y-4 xl:space-y-4 space-y-4 flex-1 sm:m-0 md:m-0"
+          >
+            <div className="flex sm:flex-col md:flex-col lg:flex-row xl:flex-row flex-row sm:space-y-2 md:space-y-3 lg:space-x-4 xl:space-x-4 space-x-4 lg:space-y-0 xl:space-y-0 sm:space-x-0 md:space-x-0 w-full">
+              <div className="flex flex-col sm:space-y-1 md:space-y-2 lg:space-y-3 xl:space-y-3 space-y-3 w-full sm:m-0 md:m-0">
                 <label
-                  className={`font-semibold text-indigo-600 text-xl sm:text-lg underline underline-offset-8 sm:underline-offset-4 decoration-4 decoration--600 decoration-dashed`}
+                  className="font-semibold text-indigo-600 sm:text-xs md:text-sm lg:text-sm xl:text-sm text-sm sm:underline-offset-2 md:underline-offset-2 underline underline-offset-4 sm:decoration-2 md:decoration-2 decoration-4 decoration-indigo-600 decoration-dashed sm:m-0 md:m-0"
                 >
-                  Message
+                  Name
                 </label>
-                <textarea
-                  name="message"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  rows={5}
-                  placeholder="Challenges are what make life interesting, and overcoming them is what makes life meaningful. Face them head-on."
-                  className={`sm:text-sm resize-none lg:h-[100px] sm:h-[110px] bg-indigo-200 rounded-md px-[3%] py-[3%] text-lg w-auto focus:border-2 border-indigo-500 text-black tracking-wide placeholder-indigo-400 font-semibold border-indigo-500 caret-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-300`}
+                <input
+                  type="text"
+                  name="user_name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="E.g:- Rohit Sharma"
+                  className="bg-indigo-200 rounded-md sm:px-2 md:px-2 lg:px-3 xl:px-3 px-3 sm:py-1 md:py-1.5 lg:py-2 xl:py-2 py-2 sm:text-xs md:text-sm lg:text-sm xl:text-sm text-sm w-full sm:m-0 md:m-0 border border-indigo-500 text-black tracking-wide placeholder-indigo-400 font-semibold caret-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-300"
                   required
                 />
               </div>
-              <button
-                type="submit"
-                className={` text-lg text-indigo-600 px-[30px] lg:px-[20px] sm:py-1 sm:px-[10px] sm:my-3 py-2 rounded-md font-semibold ${
-                  data.mode
-                    ? "border-2 border-indigo-800 hover:text-white hover:bg-violet-800 "
-                    : "border-2 border-[#313552] hover:text-amber-300 hover:bg-[#313552] "
-                } hover:shadow-lg shadow-indigo-500/40  `}
+              <div className="flex flex-col sm:space-y-1 md:space-y-2 lg:space-y-3 xl:space-y-3 space-y-3 w-full sm:m-0 md:m-0">
+                <label
+                  className="font-semibold text-indigo-600 sm:text-xs md:text-sm lg:text-sm xl:text-sm text-sm sm:underline-offset-2 md:underline-offset-2 underline underline-offset-4 sm:decoration-2 md:decoration-2 decoration-4 decoration-indigo-600 decoration-dashed sm:m-0 md:m-0"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="user_email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="E.g:- rohit45@gmail.com"
+                  className="bg-indigo-200 rounded-md sm:px-2 md:px-2 lg:px-3 xl:px-3 px-3 sm:py-1 md:py-1.5 lg:py-2 xl:py-2 py-2 sm:text-xs md:text-sm lg:text-sm xl:text-sm text-sm w-full sm:m-0 md:m-0 border border-indigo-500 text-black tracking-wide placeholder-indigo-400 font-semibold caret-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                  required
+                />
+              </div>
+            </div>
+            <div className="flex flex-col sm:space-y-1 md:space-y-2 lg:space-y-3 xl:space-y-3 space-y-3 w-full flex-1 sm:m-0 md:m-0">
+              <label
+                className="font-semibold text-indigo-600 sm:text-xs md:text-sm lg:text-sm xl:text-sm text-sm sm:underline-offset-2 md:underline-offset-2 underline underline-offset-4 sm:decoration-2 md:decoration-2 decoration-4 decoration-indigo-600 decoration-dashed sm:m-0 md:m-0"
               >
-                Send
-                <SendIcon className={`my-auto ml-2`} />
-              </button>
-            </form>
-          </div>
+                Message
+              </label>
+              <textarea
+                name="message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                rows={4}
+                placeholder="Challenges are what make life interesting, and overcoming them is what makes life meaningful. Face them head-on."
+                className="resize-none bg-indigo-200 rounded-md sm:px-2 md:px-2 lg:px-3 xl:px-3 px-3 sm:py-1 md:py-1.5 lg:py-2 xl:py-2 py-2 sm:text-xs md:text-sm lg:text-sm xl:text-sm text-sm w-full sm:h-24 md:h-28 lg:h-32 xl:h-32 h-32 sm:m-0 md:m-0 border border-indigo-500 text-black tracking-wide placeholder-indigo-400 font-semibold caret-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-300 flex-1"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className={`sm:text-xs md:text-sm lg:text-sm xl:text-sm text-sm sm:px-3 md:px-4 lg:px-4 xl:px-4 px-4 sm:py-1 md:py-1.5 lg:py-2 xl:py-2 py-2 rounded-md font-semibold flex items-center justify-center ${
+                data.mode
+                  ? "bg-indigo-600 text-white hover:bg-indigo-700"
+                  : "bg-[#313552] text-amber-300 hover:bg-[#262841]"
+              } shadow-md hover:shadow-lg mt-auto sm:m-0 md:m-0`}
+            >
+              Send Message
+              <SendIcon className="sm:ml-1 md:ml-2 lg:ml-2 xl:ml-2 ml-2 sm:w-4 md:w-4 lg:w-5 xl:w-5 w-5" />
+            </button>
+          </form>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ const imageSliderContent = [
     video:"/videos/todoProjectVideo.mp4",
     title: "Todo list ",
     content:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint veniam quam cupiditate. Quae tempore repellendus quos beatae, quia magnam voluptates?",
+      "A streamlined task management application built with React.js, allowing users to create, edit, and delete tasks effortlessly, with a focus on simplicity and real-time task updates.",
     github: "https://github.com/Aayush14Shah/todolist"
   },
   {
@@ -14,7 +14,7 @@ const imageSliderContent = [
     video:"/videos/textutilsProjectVideo.mp4",
     title: "Textutils",
     content:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint veniam quam cupiditate. Quae tempore repellendus quos beatae, quia magnam voluptates?",
+      "A versatile React.js tool that enables users to manipulate text through actions like case conversion, text reversal, bold/italic styling, and text-to-speech, while offering customizable themes and insights on character count, word count, and reading time.",
     github: "https://github.com/Aayush14Shah/textutils"
   },
   {
@@ -23,7 +23,7 @@ const imageSliderContent = [
     video:"/videos/pixabayProjectVideo.mp4",
     title: "Pixabay Image Finder",
     content:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint veniam quam cupiditate. Quae tempore repellendus quos beatae, quia magnam voluptates?",
+      "A React.js application that leverages the Pixabay API to fetch images based on user keyword searches, featuring a dropdown to limit results for a tailored browsing experience.",
     github: "https://github.com/Aayush14Shah/pixabay_image_finder"
   },
   {
@@ -32,7 +32,7 @@ const imageSliderContent = [
     video:"/videos/pixabayProjectVideo2.mp4",
     title: "Image Finder",
     content:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint veniam quam cupiditate. Quae tempore repellendus quos beatae, quia magnam voluptates?",
+      "An enhanced image search tool using the Pixabay API, built with React.js, providing detailed photo insights including author, views, downloads, likes, and hashtags for a comprehensive user experience.",
     github: "https://github.com/Aayush14Shah/tailwind-css"
   },
 ];
